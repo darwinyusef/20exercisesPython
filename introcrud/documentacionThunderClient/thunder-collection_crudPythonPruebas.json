@@ -1,0 +1,89 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "crudPythonPruebas",
+    "dateExported": "2024-04-25T16:33:05.234Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "f131c04d-026b-4584-8d8e-d62e6e961250",
+            "colId": "af4ee300-24e7-4e9b-9c55-a3a4b64c0502",
+            "containerId": "",
+            "name": "getUsers",
+            "url": "localhost:8000/usuarios",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-04-25T16:01:45.471Z",
+            "modified": "2024-04-25T16:13:15.615Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e2ed3194-cb64-40ca-a1e3-8befad01c181",
+            "colId": "af4ee300-24e7-4e9b-9c55-a3a4b64c0502",
+            "containerId": "",
+            "name": "postUsers",
+            "url": "localhost:8000/usuarios",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-04-25T16:05:16.905Z",
+            "modified": "2024-04-25T16:14:20.526Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"nombre\": \"Pepito\",\r\n  \"apellido\": \"Gutierrez\",\r\n  \"correo_electronico\": \"pepito@gmail.com\"\r\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "b95dc14d-3468-4209-a84b-fbbc02ad8422",
+            "colId": "af4ee300-24e7-4e9b-9c55-a3a4b64c0502",
+            "containerId": "",
+            "name": "postUsers Copy",
+            "url": "localhost:8000/usuarios/1",
+            "method": "PUT",
+            "sortNum": 25000,
+            "created": "2024-04-25T16:26:28.137Z",
+            "modified": "2024-04-25T16:26:47.849Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nombre\": \"Yusef\",\n  \"apellido\": \"Gutierrez\",\n  \"correo_electronico\": \"yus@gmail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "6089a0e9-23e8-465c-93d4-3ec11398990c",
+            "colId": "af4ee300-24e7-4e9b-9c55-a3a4b64c0502",
+            "containerId": "",
+            "name": "getUsers/show",
+            "url": "localhost:8000/usuarios/3",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-04-25T16:15:18.859Z",
+            "modified": "2024-04-25T16:27:39.569Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "06c52c75-b558-43fa-891f-0cc4898c19f8",
+            "colId": "af4ee300-24e7-4e9b-9c55-a3a4b64c0502",
+            "containerId": "",
+            "name": "getUsers/show Copy",
+            "url": "localhost:8000/usuarios/3",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-04-25T16:27:28.658Z",
+            "modified": "2024-04-25T16:27:28.658Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
