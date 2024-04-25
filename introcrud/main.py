@@ -8,17 +8,6 @@ app = FastAPI()
 def message(): 
     return 'Hola Mundo'
 
-def gestionConnect(id: int, usuario: Usuario, sql: str): 
-    conexion = conectar_bd()
-    cursor = conexion.cursor()
-    
-    cursor.execute(sql)
-    usuarios = cursor.fetchall()
-    conexion.commit()
-    cerrar_bd(conexion)
-    return usuarios
-
-
 @app.get("/usuarios")
 def obtener_usuarios():
     conexion = conectar_bd()
