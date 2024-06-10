@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .info {
+            display: flex;
+            justify-content: center;
+            width: 80%;
+            margin: 0 auto;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .info li {
+            list-style: none;
+            background-color: rebeccapurple;
+            color: white;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    el index del profe
+    <ul id="alluser" class="info"></ul>
+    <script>
+        fetch("http://localhost:8000/onlydata")
+            .then((res) => res.json())
+            .then((res) => {
+                // Llamamos al padre
+                const ul = document.getElementById('alluser');
+                // creamos un li a traves de creteElement
+                res.map((r) => {
+                    const li = document.createElement('li');
+                    // insertamos un text con textContent
+                    li.textContent = r.names;
+                    // insertarmos todo el li al padre con appendChild 
+                    ul.appendChild(li);
+                });
+
+            }) //YULY
+            .catch((e) => {
+                console.log(e);
+            })
+    </script>
+</body>
+
+</html>
