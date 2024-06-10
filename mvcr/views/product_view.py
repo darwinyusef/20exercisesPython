@@ -1,3 +1,4 @@
+import json
 from fastapi import Request, APIRouter, Depends
 from fastapi.exceptions import HTTPException
 from models import Product
@@ -44,3 +45,4 @@ async def update_product(request: Request, product_id: int, product: Product):
 async def delete_product(request: Request, product_id: int):
     product_repository.delete_product(product_id)
     return {"message": "Product deleted"}
+
