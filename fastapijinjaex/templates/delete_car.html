@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/icon.jpg">
+    <title>Delete a Vehicle</title>
+</head>
+
+<body>
+    <div class="container del">
+        <form class="login-form" id="carRequest">
+            <h1>Borrar Carro</h1></br>
+            <div class="form-group">
+                <label for="car_id">Id del carro a borrar:</label>
+                <input type="number" id="car_id" name="id" required>
+            </div>
+
+            <button class="btnDel" type="submit">Borrar</button>
+            <button class="btnDel" type="button" onclick="location.href='/'">Cancelar</button>
+
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("carRequest").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const object = {};
+            formData.forEach(function (value, key) {
+                object[key] = value;
+            });
+            const jsonData = JSON.stringify(object);
+            fetch("/delete-car", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: jsonData
+            }).then(response =>  {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            }).then(data => {
+                alert("¡El carro se ha borrado correctamente!");
+                window.location.href = "/"
+            }).catch(error => {
+                alert("El id ingresado no se ha encontrado!");
+                console.error('There has been a problem with your fetch operation:', error);
+                window.location.href = "/delete-car-form"
+            });
+        });
+    </script>
+</body>
+
+</html>
