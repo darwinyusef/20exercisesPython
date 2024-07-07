@@ -1,0 +1,27 @@
+site_name: TDD with pytest
+nav:
+  - 'Index': index.md
+  - 'InformationBasic': prueba.md
+  - 'InformationAdvanced': prueba2.md
+docs_dir: docs
+site_dir: build
+theme:
+  name: material
+  palette:
+    primary: orange
+  font:
+    text: Roboto
+  language: es
+  static_templates:
+    - sitemap.html
+  include_sidebar: false
+# Additional Material theme options (optional)
+repo_url: https://github.com/vanzaj/tdd-pytest
+extra_css: 
+  - 'css/extra.css'
+markdown_extensions:
+  - admonition
+  - footnotes
+  - smarty
+  - toc:
+      permalink: True
