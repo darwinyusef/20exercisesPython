@@ -142,6 +142,7 @@ def delete(names: str):
         cursor.execute(sql)
         conexion.commit()
         respuesta = {
+            "info": "ok",
             "mensaje": "Usuario se ha eliminado con exito",
         }
         return respuesta
