@@ -68,7 +68,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Formulario de nombre</h1>
+      <h1>Agrega un nuevo nombre</h1>
       <form id="sendpost">
         <label for="name">Nombre:</label>
         <input type="text" id="names" name="names" required />
@@ -91,7 +91,7 @@
             .then((res) => res.json())
             .then((res) => {
               alert(res.mensaje);
-              location.reload();
+              window.location = `file:///G:/pythonExcerses/data25/cliente/crud/getshow.html?names=${name}`;
             })
             .catch((e) => {
               console.log(e);
