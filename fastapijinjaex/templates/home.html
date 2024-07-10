@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" href="/static/icon.jpg">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Bienvenido al Dealership</h1>
+        <button type="submit" onclick="location.href='http://127.0.0.1:8000/stock'">Ver Stock</button>
+        <button type="submit" onclick="location.href='http://127.0.0.1:8000/stock/1'">Buscar Carro por Id</button>
+        <button type="submit" onclick="location.href='http://127.0.0.1:8000/cars/Toyota'">Buscar Carro por marca</button>
+        <button class="btnPost" type="submit" onclick="location.href='/add-car-form'">Deseas agregar un carro?</button>
+        <button class="btnPut" type="submit" onclick="location.href='/update-car-form'">Deseas actualizar un carro?</button>
+        <button class="btnDel" type="submit" onclick="location.href='/delete-car-form'">Deseas eliminar un carro?</button>
+    </div>
+</body>
+
+</html>
