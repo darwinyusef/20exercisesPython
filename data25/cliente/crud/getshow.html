@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .info {
+        background-color: lightcyan;
+        padding: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .info li {
+        list-style: none;
+        background-color: rebeccapurple;
+        color: white;
+        font-weight: bold;
+        font-size: 50px;
+        padding: 5px;
+        border-radius: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .info li div {
+        margin-top: -25px;
+      }
+      .info li img {
+        width: 20px;
+        opacity: 1;
+        cursor: pointer;
+      }
+      .info li img:hover {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul id="alluser" class="info"></ul>
+    <small style="text-align: center">/getshow.html?names=Janna</small>
+    <script>
+      const url = "file:///G:/pythonExcerses/data25/cliente/crud";
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const name = urlParams.get("names");
+      const itemname = name ? name : "Tina";
+      fetch(`http://localhost:8000/onlydata/${itemname}`)
+        .then((res) => res.json())
+        .then((res) => {
+          const ul = document.getElementById("alluser");
+          ul.innerHTML = "";
+          // Llamamos al padre
+          res["id"].map((r) => {
+            const li = document.createElement("li");
+            // insertamos un text con textContent
+            li.innerHTML = `
+            <span>${r}</span>
+            <div>
+              <a href="${url}/edit.html?names=${r}"><img src="../img/pen.svg" alt="eye" /></a>
+              <a href="${url}/delete.html?names=${r}"><img src="../img/trash.svg" alt="eye" /></a>
+            </div>`;
+            // insertarmos todo el li al padre con appendChild
+            ul.appendChild(li);
+          });
+        })
+
+        .catch((e) => {
+          const ul = document.getElementById("alluser");
+          ul.innerHTML = "";
+          const li = document.createElement("li");
+          li.textContent = "Error";
+          ul.appendChild(li);
+        });
+    </script>
+  </body>
+</html>
