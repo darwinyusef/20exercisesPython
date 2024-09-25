@@ -7,9 +7,14 @@ from datetime import datetime
 import psycopg2
 import os 
 from dotenv import load_dotenv
+from auth import router
 load_dotenv()
 
 app = FastAPI()
+
+
+app.include_router(router)
+
 
 origins = ["*"]
 
@@ -71,7 +76,7 @@ class Task(BaseModel):
 
 
 # ♣-♥-♦ CREATE - POST (Crear una nueva tarea)
-@app.post('/tasks/', response_model=Task)
+@app.post('/ticket/', response_model=Task, tags=["Ticket"], description="Create a new ticket")
 def create_task(task: Task):
     
     conexion = conectar_bd()
@@ -95,7 +100,7 @@ def create_task(task: Task):
 
 # doc, url, sql, front
 # ♣-♥-♦ READ - GET (Obtener todas las tareas)
-@app.get('/tasks/')
+@app.get('/ticket/', tags=["Ticket"])
 def get_tasks(tocken: Annotated[str | None, Header()] = None):
     
     if tocken == "tocken": 
@@ -112,7 +117,7 @@ def get_tasks(tocken: Annotated[str | None, Header()] = None):
 
 
 # READ - GET by ID (Obtener una tarea por ID)
-@app.get('/tasks/{task_id}', response_model=Task)
+@app.get('/ticket/{task_id}', response_model=Task, tags=["Ticket"])
 def get_task(task_id: int):
     conexion = conectar_bd()
     cursor = conexion.cursor()
@@ -129,7 +134,7 @@ def get_task(task_id: int):
 
 
 # UPDATE - PUT (Actualizar una tarea)
-@app.put('/tasks/{task_id}', response_model=Task)
+@app.put('/ticket/{task_id}', response_model=Task, tags=["Ticket"])
 def update_task(task_id: int, task: Task):
     conexion = conectar_bd()
     cursor = conexion.cursor()
@@ -156,7 +161,7 @@ def update_task(task_id: int, task: Task):
 
 
 # DELETE - DELETE (Eliminar una tarea)
-@app.delete('/tasks/{task_id}', response_model=dict)
+@app.delete('/ticket/{task_id}', response_model=dict, tags=["Ticket"])
 def delete_task(task_id: int):
     conexion = conectar_bd()
     cursor = conexion.cursor()
