@@ -4,10 +4,11 @@ from typing import Annotated
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from datetime import datetime
+from jose import jwt
 import psycopg2
 import os 
 from dotenv import load_dotenv
-from auth import router
+from auth import router, SECRET_KEY, ALGORITHM
 load_dotenv()
 
 app = FastAPI()
@@ -78,19 +79,15 @@ class Task(BaseModel):
 # ♣-♥-♦ CREATE - POST (Crear una nueva tarea)
 @app.post('/ticket/', response_model=Task, tags=["Ticket"], description="Create a new ticket")
 def create_task(task: Task):
-    
     conexion = conectar_bd()
     cursor = conexion.cursor()
-
     query = """
     INSERT INTO tasks (user_id, title, description, status, category, priority, created_at, updated_at)
     VALUES (%s, %s, %s, %s, %s, %s, NOW(), NOW()) RETURNING *;
     """
-
     cursor.execute(query, (
         task.user_id, task.title, task.description, task.status, task.category, task.priority
     ))
-
     new_task = cursor.fetchone()
     conexion.commit()
     cursor.close()
@@ -99,11 +96,14 @@ def create_task(task: Task):
     return dict(zip([desc[0] for desc in cursor.description], new_task))
 
 # doc, url, sql, front
-# ♣-♥-♦ READ - GET (Obtener todas las tareas)
+# ♣-♥-♦-♠ READ - GET (Obtener todas las tareas) validación de rol usando payload de jwt
 @app.get('/ticket/', tags=["Ticket"])
 def get_tasks(tocken: Annotated[str | None, Header()] = None):
+   
+    payload = jwt.decode(tocken, SECRET_KEY, algorithms=[ALGORITHM])
+    rol: str = payload.get("rol")
     
-    if tocken == "tocken": 
+    if rol == "user": 
         conexion = conectar_bd()
         cursor = conexion.cursor()
         cursor.execute("SELECT * FROM tasks;")

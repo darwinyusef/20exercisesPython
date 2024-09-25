@@ -1,0 +1,20 @@
+<script>
+    fetch("http://localhost:8000/ticket", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json', 
+            'tocken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyIiwicm9sIjoidXNlciIsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20iLCJpZCI6MSwicGVybWlzc2lvbnMiOiJwZXBpdG8gY2xhdm8gdW4gY2xhdml0byIsImV4cCI6MTcyNzIzMjcyNn0._iLSG5yIUsWFdhnIA_cNN-stK3omRnwPgcT3CrB_dhk'
+        },
+        /*body: JSON.stringify({
+            email: "testuser@example.com",
+            password: "password123"
+        }),*/
+    })
+        .then((resp) => resp.json())
+        .then((resp) => {
+            console.log(resp);
+        })
+        .catch((e) => {
+            console.warn("Error", e);
+        })
+</script>

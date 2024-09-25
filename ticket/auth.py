@@ -6,12 +6,14 @@ from passlib.context import CryptContext
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from typing import Optional
+from fastapi.middleware.cors import CORSMiddleware
 
 # Variables de entorno
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
 
 # Cargar la clave secreta y otros parámetros desde las variables de entorno
 SECRET_KEY = os.getenv("SECRET_KEY")
@@ -58,6 +60,7 @@ router = APIRouter(
     # dependencies=[Depends(get_token_header)],
     responses={404: {"description": "Not found"}},
 )
+
 
 # ERROR Contexto de encriptación de contraseñas
 # TODO : Revisar un error en el bcrypt porque dice que esta desactualizado y ver otra opción
@@ -109,8 +112,10 @@ def register_user(user: UserCreate):
 
     return {"id": new_user[0], "email": new_user[1], "is_active": new_user[2]}
 
+# ♥-♣-♠-♦ Ruta de inicio de sesión generando un token
 @router.post("/token", response_model=Token)
 def login_for_access_token(auth: LoginData): #OAuth2PasswordRequestForm = Depends()): 
+  
     conexion = conectar_bd()
     cursor = conexion.cursor()
     # 3 Verificar si el usuario existe

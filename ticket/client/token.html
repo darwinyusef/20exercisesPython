@@ -1,0 +1,19 @@
+<script>
+    fetch("http://localhost:8000/auth/token", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: "testuser@example.com",
+            password: "password123"
+        }),
+    })
+        .then((resp) => resp.json())
+        .then((resp) => {
+            console.log(resp);
+        })
+        .catch((e) => {
+            console.warn("Error", e);
+        })
+</script>
