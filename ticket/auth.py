@@ -156,7 +156,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
             raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
+            headers={"WWW-Authenticate": "Bearer"}, # se contesta como consideres el error
         ) 
         token_data = TokenData(email=email)
     except JWTError:
@@ -176,6 +176,12 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         raise HTTPException(status_code=404, detail="User not found")
     
     return {"id": user[0], "email": user[1], "is_active": user[2]}
+
+
+@router.post("/login/", response_model=Token)
+def loggin(tocken: Token): 
+    user = get_current_user(tocken)
+    return {"usuario": user, "ms": "ok"}
 
 @router.get("/manualphash")
 def manualphash(password: str):
