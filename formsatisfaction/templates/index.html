@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario de Encuesta</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="icon" href="/static/Logo_Hub.png" type="Logo_Hub/png" />
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 id="title" class="text-center">Formulario De Satisfacción</h1>
+      <p id="description" class="description text-center">
+        Aqui puedes calificar nuestro servicio.
+      </p>
+    </header>
+    <form action="/add" method="post">
+      <div class="form-group">
+        <label id="name-label" for="name">Nombre</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Ingrese su nombre" required />
+      </div>
+      <div class="form-group">
+        <p>¿Cual es el tipo de identificación?</p>
+        <select id="dropdown" name="identificacion" class="form-control" required>
+          <option value="Identidad">Tarjeta de Identidad</option>
+          <option value="Ciudadania">Cedula de Ciudadania</option>
+          <option value="Extranjeria">Cedula de Extranjeria</option>
+          <option value="PEP">P.E.P.</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label id="tarj-iden" for="document">Numero de identificación</label>
+        <input type="text" name="document" id="tarj-iden" class="form-control" placeholder="Ingrese su número" required />
+      </div>
+      <div class="form-group">
+        <label id="number-label" for="age">Edad<span class="clue">(opcional)</span></label>
+        <input type="number" name="age" id="number" min="10" max="99" class="form-control" placeholder="Edad" />
+      </div>
+      <div class="form-group">
+        <p>¿Cual es el servicio que deseas calificar?</p>
+        <select id="dropdown" name="service" class="form-control" required>
+          <option value="Cursos">Cursos</option>
+          <option value="Talleres">Talleres</option>
+          <option value="Webinars">Webinars</option>
+          <option value="Charlas">Charlas</option>
+          <option value="Bootcamps">Bootcamps</option>
+          <option value="Otros">Otros</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <p>¿Cómo calificaría la calidad del producto?</p>
+        <label>
+          <input name="pq" value="1" type="radio" class="input-radio"
+            checked />1</label>
+        <label>
+          <input name="pq" value="2" type="radio" class="input-radio" />2</label>
+
+        <label>
+          <input name="pq" value="3" type="radio" class="input-radio" />3</label>
+
+        <label>
+          <input name="pq" value="4" type="radio" class="input-radio" />4</label>
+
+          <label>
+            <input name="pq" value="5" type="radio" class="input-radio" />5</label>
+      </div>
+
+      <div class="form-group">
+        <p>
+        ¿Recomendaría nuestro producto?
+        </p>
+        <label>
+          <input name="rp" value="Si" type="radio" class="input-radio"
+            checked />Si</label>
+        <label>
+          <input name="rp" value="No" type="radio" class="input-radio" />No</label>
+
+      </div>
+
+      <div class="form-group">
+        <p>
+          ¿Cuál fue su experiencia general con nuestro servicio?
+        </p>
+        <label>
+          <input name="es" value="Mala" type="radio" class="input-radio"
+            checked />Mala</label>
+        <label>
+          <input name="es" value="Regular" type="radio" class="input-radio" />Regular</label>
+        <label>
+          <input name="es" value="Buena" type="radio" class="input-radio" />Buena</label>
+        <label>
+          <input name="es" value="Excelente" type="radio" class="input-radio" />Excelente</label>
+
+      </div>
+
+      <div class="form-group">
+        <p>
+          ¿Qué tan rápido y eficiente fue el proceso de atención?
+        </p>
+        <label>
+          <input name="as" value="Rapido" type="radio" class="input-radio"
+            checked />Rápido y eficiente</label>
+        <label>
+          <input name="as" value="Regular" type="radio" class="input-radio" />Regular, podría mejorar</label>
+        <label>
+          <input name="as" value="Lento" type="radio" class="input-radio" />Lento y poco eficiente</label>
+      </div>
+        
+      <div class="form-group">
+        <p>
+          ¿Cómo fue tu experiencia general al interactuar con nuestro personal?
+        </p>
+        <label>
+          <input name="ge" value="Excelente" type="radio" class="input-radio"
+            checked />Excelente, el personal fue muy amable y profesional.</label>
+        <label>
+          <input name="ge" value="Regular" type="radio" class="input-radio" />Regular, el personal fue neutral.</label>
+        <label>
+          <input name="ge" value="Mala" type="radio" class="input-radio" />Mala, el personal fue grosero o descortés.
+        </label>
+      </div>
+
+      <div class="form-group">
+        <p>
+          ¿El producto/servicio cumplió con tus expectativas?
+        </p>
+        <label>
+          <input name="sx" value="Cumplio" type="radio" class="input-radio"
+            checked /> Cumplió completamente con mis expectativas.</label>
+        <label>
+          <input name="sx" value="Parcial" type="radio" class="input-radio" />Cumplió parcialmente con mis expectativas.</label>
+        <label>
+          <input name="sx" value="No" type="radio" class="input-radio" />No cumplió con mis expectativas.
+        </label>
+      </div>
+    
+      <div class="form-group">
+        <p>
+          ¿Cómo describirías la relación calidad/precio de lo que adquiriste?
+        </p>
+        <label>
+          <input name="qpr" value="Exelente" type="radio" class="input-radio"
+            checked /> Excelente, obtuve mucho valor por lo que pagué.</label>
+        <label>
+          <input name="qpr" value="Bien" type="radio" class="input-radio" />Buena, la calidad justifica el precio.</label>
+        <label>
+          <input name="qpr" value="Regular" type="radio" class="input-radio" />Regular, la calidad es aceptable para el precio.</label>
+          <label>
+          <input name="qpr" value="Malo" type="radio" class="input-radio" /> Mala, pagué más de lo que valía.</label>
+      </div>
+      
+      <div class="form-group">
+        <p>
+          ¿Te gustaría volver a utilizar nuestros servicios/productos en el futuro?
+        </p>
+        <label>
+          <input name="fp" value="Definitivamente" type="radio" class="input-radio"
+            checked />Definitivamente sí.</label>
+        <label>
+          <input name="fp" value="Probablemente" type="radio" class="input-radio" /> Probablemente sí.</label>
+        <label>
+          <input name="fp" value="Noseguro" type="radio" class="input-radio" />No estoy seguro(a).</label>
+          <label>
+          <input name="fp" value="Noprobable" type="radio" class="input-radio" />Probablemente no</label>
+          <label>
+          <input name="fp" value="Nodefinitivo" type="radio" class="input-radio" />Definitivamente no</label>
+      </div>
+      
+      <div class="form-group">
+        <p>Comentarios o Sugerencias?</p>
+        <textarea style="width:100%" id="comments" class="comment" name="comment"
+          placeholder="Ingrese su comentario aquí..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" id="submit" class="submit-button">  Enviar <a href="/agradecimientos"></a>
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

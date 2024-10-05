@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Información y Datos</title>
+    <style>
+      :root {
+        --primary: #23adad;
+        --greyLight: #23adade1;
+        --greyLight-2: #cbe0dd;
+        --greyDark: #2d4848;
+      }
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 1em;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      thead {
+        background-color: #009879;
+        color: #ffffff;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      tr {
+        border-bottom: 1px solid #dddddd;
+        transition: background-color 0.3s ease;
+      }
+
+      tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+
+      tr:last-of-type {
+        border-bottom: 2px solid #009879;
+      }
+
+      tr:hover {
+        background-color: #f5f5f5;
+        cursor: pointer;
+      }
+
+      a {
+        color: #009879;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--greyLight-2);
+        color: var(--greyDark);
+      }
+
+      ul {
+        list-style-type: none;
+      }
+
+      .items-list {
+        max-width: 90vw;
+        margin: 2rem;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-gap: 3rem;
+        justify-content: center;
+        align-content: center;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .items-list {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .item {
+        width: 10rem;
+        height: 10rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--greyDark);
+        cursor: pointer;
+      }
+
+      .item span {
+        box-shadow: 0 0.8rem 2rem rgba(90, 97, 129, 0.05);
+        border-radius: 0.6rem;
+        padding: 2rem;
+        font-size: 3rem;
+        transition: all 0.3s ease;
+      }
+
+      .item:hover span {
+        transform: scale(1.2);
+        color: var(--primary);
+      }
+
+      .item p {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        color: var(--greyLight);
+      }
+
+      .page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 5rem;
+        margin: 3rem;
+        border-radius: 0.6rem;
+        box-shadow: 0 0.8rem 2rem rgba(90, 97, 129, 0.05);
+      }
+
+      .page__numbers,
+      .page__btn,
+      .page__dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0.8rem;
+        font-size: 1.4rem;
+        cursor: pointer;
+      }
+
+      .page__dots {
+        width: 2.6rem;
+        height: 2.6rem;
+        color: var(--greyLight);
+        cursor: initial;
+      }
+
+      .page__numbers {
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 0.4rem;
+      }
+
+      .page__numbers:hover {
+        color: var(--primary);
+      }
+
+      .page__numbers.active {
+        color: #ffffff;
+        background: var(--primary);
+        font-weight: 600;
+        border: 1px solid var(--primary);
+      }
+
+      .page__btn {
+        color: var(--greyLight);
+        pointer-events: none;
+      }
+
+      .page__btn.active {
+        color: var(--greyDark);
+        pointer-events: initial;
+      }
+
+      .page__btn.active:hover {
+        color: var(--primary);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Datos de la API</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Identificación</th>
+          <th>Documento</th>
+          <th>Comentario</th>
+          <th>Servicio</th>
+          <th>RP</th>
+          <th>ES</th>
+          <th>AS</th>
+          <th>FP</th>
+          <th>GE</th>
+          <th>PQ</th>
+          <th>QPR</th>
+          <th>SX</th>
+        </tr>
+      </thead>
+      <tbody id="data-table-body">
+        <!-- Aquí se llenarán los datos con JS -->
+      </tbody>
+    </table>
+
+    <div>
+      <ul class="page">
+        <li class="page__btn">
+          <span class="material-icons">◀️</span>
+        </li>
+        <a href="/datos?page=1"><li class="page__numbers">1</li></a>
+        <a href="/datos?page=2"><li class="page__numbers">2</li></a>
+        <!--<li class="page__numbers">3</li>
+        <li class="page__numbers">4</li>
+        <li class="page__numbers">5</li>
+        <li class="page__numbers">6</li>
+        <li class="page__dots">...</li>
+        <li class="page__numbers">10</li>-->
+        <li class="page__btn">
+          <span class="material-icons">▶️</span>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const page = urlParams.get("page");
+        if (!page) {
+          page = 1;
+        }
+        console.log(page);
+        fetch(`info?page=${page}`)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            const tableBody = document.getElementById("data-table-body");
+            data.forEach((item, index) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                            <td>${index + 1}</td>
+                            <td><a href="individual?id=${item["$id"]}">${
+                item.name
+              }</a></td>
+                            <td>${item.age}</td>
+                            <td>${item.identificacion}</td>
+                            <td>${item.document}</td>
+                            <td>${item.comment}</td>
+                            <td>${item.service}</td>
+                            <td>${item.rp}</td>
+                            <td>${item.es}</td>
+                            <td>${item.as}</td>
+                            <td>${item.fp}</td>
+                            <td>${item.ge}</td>
+                            <td>${item.pq}</td>
+                            <td>${item.qpr}</td>
+                            <td>${item.sx}</td>
+                        `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) =>
+            console.error("Error al obtener los datos:", error)
+          );
+      });
+    </script>
+  </body>
+</html>

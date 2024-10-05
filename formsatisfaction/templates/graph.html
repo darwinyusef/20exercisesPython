@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documenttt</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css"
+    />
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1 {
+    color: #009879;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.onlyGraph {
+    width: 100%;
+    max-width: 600px; /* Ancho máximo para pantallas grandes */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+
+    /* Centrando las gráficas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table.charts-css {
+    width: 100%;
+    height: auto;
+}
+
+table.charts-css.column {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.charts-css .data {
+    font-size: 14px;
+    padding-top: 10px;
+    font-weight: bold;
+    color: #444;
+}
+
+.charts-css .tooltip {
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+/* Media Queries para adaptarse a dispositivos móviles */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 10px;
+    }
+
+    .onlyGraph {
+        max-width: 100%; /* Ajuste para pantallas medianas */
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .charts-css .data {
+        font-size: 12px;
+    }
+
+    .charts-css .tooltip {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px 5px;
+    }
+
+    .onlyGraph {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .charts-css .data {
+        font-size: 10px;
+    }
+
+    .charts-css .tooltip {
+        font-size: 8px;
+    }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+
+      <h1>¿Cual es el servicio que deseas calificar?</h1>
+      <div class="onlyGraph" style="width: 600px; height: 250px">
+        <table
+          class="charts-css column multiple show-heading show-labels show-primary-axis data-spacing-20"
+        >
+          <tbody id="contentBody"></tbody>
+        </table>
+      </div>
+
+      <h1>¿Recomendaría nuestro producto?</h1>
+      <div class="onlyGraph" style="width: 400px;">
+        <table
+          class="charts-css column multiple show-heading show-labels show-primary-axis data-spacing-20"
+        >
+          <tbody id="secondElement"></tbody>
+        </table>
+      </div>
+
+      <h1>¿Cómo calificaría la calidad del producto?</h1>
+      <div class="onlyGraph" style="width: 500px; height: 250px">
+        <table
+          class="charts-css column multiple show-heading show-labels show-primary-axis data-spacing-20"
+        >
+          <tbody id="pqElement"></tbody>
+        </table>
+      </div>
+
+      <h1>¿Cuál fue su experiencia general con nuestro servicio?</h1>
+      <div class="onlyGraph" style="width: 500px; height: 280px">
+        <table
+          class="charts-css column multiple show-heading show-labels show-primary-axis data-spacing-20"
+        >
+          <tbody id="esElement"></tbody>
+        </table>
+      </div>
+
+      <h1>¿Qué tan rápido y eficiente fue el proceso de atención?</h1>
+      <div class="onlyGraph" style="width: 500px">
+        <table
+          class="charts-css column multiple show-heading show-labels show-primary-axis data-spacing-20"
+        >
+          <tbody id="asElement"></tbody>
+        </table>
+      </div>
+
+      <h1>¿Cómo fue tu experiencia general al interactuar con nuestro personal?</h1>
+      <div class="onlyGraph" style="width: 500px; height: 280px">
+        <table
+          class="charts-css column multiple show-heading show-labels show-primary-axis data-spacing-20"
+        >
+          <tbody id="geElement"></tbody>
+        </table>
+      </div>
+
+      <h1>
+        ¿El producto/servicio cumplió con tus expectativas?
+      </h1>
+      <div class="onlyGraph" style="width: 500px; height: 280px">
+        <table
+          class="charts-css column multiple show-heading show-labels show-primary-axis data-spacing-20"
+        >
+          <tbody id="sxElement"></tbody>
+        </table>
+      </div>
+
+      <h1>¿Cómo describirías la relación calidad/precio de lo que adquiriste?</h1>
+      <div class="onlyGraph" style="width: 500px; height: 280px">
+        <table
+          class="charts-css column multiple show-heading show-labels show-primary-axis data-spacing-20"
+        >
+          <tbody id="qprElement"></tbody>
+        </table>
+      </div>
+
+      <h1>
+        ¿Te gustaría volver a utilizar nuestros servicios/productos ?
+      </h1>
+      <div class="onlyGraph" style="width: 600px; height: 280px">
+        <table
+          class="charts-css column multiple show-heading show-labels show-primary-axis data-spacing-20"
+        >
+          <tbody id="fpElement"></tbody>
+        </table>
+      </div>
+
+    </div>
+  </body>
+</html>
+
+<script>
+  // listado de los datos de la tabla
+  const allCounts = (res) => {
+    const keysToCount = [
+      "service",
+      "pq",
+      "rp",
+      "es",
+      "as",
+      "ge",
+      "sx",
+      "qpr",
+      "fp",
+    ];
+
+    // transforma el array de objetos a un array de arrays
+    const counts = keysToCount.reduce((acc, key) => {
+      acc[key] = {};
+      return acc;
+    }, {});
+
+    // recorre el array de objetos y suma los valores de cada clave se añade de 0 a numero +
+    res.forEach((item) => {
+      keysToCount.forEach((key) => {
+        const value = item[key];
+        if (value !== undefined && value !== null) {
+          if (counts[key][value]) {
+            counts[key][value]++;
+          } else {
+            counts[key][value] = 1;
+          }
+        }
+      });
+    });
+    return counts;
+  };
+
+  // funcion que recibe los datos de la tabla y los muestra en la tabla
+  const printGraph = (service, originalJson, finalDocument) => {
+    // Modificar los valores en el objeto original usando los nuevos valores
+    for (let key in service) {
+      if (originalJson.hasOwnProperty(key)) {
+        originalJson[key] = service[key];
+      }
+    }
+    // Crear una nueva instancia de Charts.css
+    const srv = Object.keys(originalJson).length;
+    const keys = Object.keys(originalJson);
+    const values = Object.values(originalJson);
+    const max = Math.max(...Object.values(originalJson));
+    // Crear la tabla
+    let info = "";
+    for (let i = 0; i < srv; i++) {
+      info += `
+      <td style="--size: calc( ${values[i]} / ${max} );">
+                  <span class="data"> ${keys[i]} - ${values[i]}  </span>
+                  <span class="tooltip"> ${keys[i]} </span>
+                </td>
+      `;
+    }
+
+    finalDocument.innerHTML = `
+    <tr id="principal">
+        <th scope="row">  </th>
+        ${info}
+      </tr>
+    `;
+  };
+
+  fetch("/info")
+    .then((res) => res.json())
+    .then((res) => {
+      const counts = allCounts(res);
+      console.log(counts);
+      printGraph(
+        counts.service,
+        {
+          Cursos: 0,
+          Talleres: 0,
+          Webinars: 0,
+          Charlas: 0,
+          Bootcamps: 0,
+          Otros: 0,
+        },
+        document.getElementById("contentBody")
+      );
+
+      printGraph(
+        counts["rp"],
+        {
+          Si: 0,
+          No: 0,
+        },
+        document.getElementById("secondElement")
+      );
+
+      printGraph(
+        counts["pq"],
+        { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+        document.getElementById("pqElement")
+      );
+
+      printGraph(
+        counts["es"],
+        { Mala: 0, 
+          Excelente: 0, 
+          Buena: 0, 
+          Regular: 0 },
+        document.getElementById("esElement")
+      );
+
+      printGraph(
+        counts["as"],
+        { Rapido: 0, 
+          Regular: 0, 
+          Lento: 0 },
+        document.getElementById("asElement")
+      );
+
+      printGraph(
+        counts["ge"],
+        { Excelente: 0, 
+          Regular: 0, 
+          Mala: 0 },
+        document.getElementById("geElement")
+      );
+
+      printGraph(
+        counts['sx'], 
+        {Cumplio: 0, 
+          Parcial: 0,
+          No: 0},
+        document.getElementById("sxElement")
+        );
+
+      printGraph(
+        counts['qpr'],
+        {Exelente: 0, 
+          Bien: 0,
+          Regular: 0,
+          Mala: 0},
+        document.getElementById("qprElement")
+      );
+
+      printGraph(
+        counts['fp'],
+        {Definitivamente: 0, 
+          Probablemente: 0, 
+          Noseguro: 0, 
+          Noprobable: 0,
+          Nodefinitivo: 0}, 
+        document.getElementById("fpElement")
+      );
+
+    })
+    .catch((e) => console.log(e));
+</script>

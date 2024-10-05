@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte Individual</title>
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+        .report-container {
+            background-color: #ffffff;
+            padding: 25px;
+            margin: 0 auto;
+            max-width: 700px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border-left: 5px solid #009879;
+        }
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .report-header h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .report-header p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 16px;
+        }
+        .report-content {
+            margin-bottom: 25px;
+        }
+        .report-content h2 {
+            font-size: 20px;
+            color: #009879;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #009879;
+            padding-bottom: 5px;
+        }
+        .report-content p {
+            margin: 10px 0;
+            color: #555;
+            font-size: 16px;
+        }
+        .report-content p strong {
+            font-weight: bold;
+            color: #333;
+        }
+        .report-footer {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="report-container">
+    <div class="report-header">
+        <h1>Reporte Individual</h1>
+        <p id="name">Nombre: </p>
+        <p id="document">Documento: </p>
+    </div>
+
+    <div class="report-content">
+        <h2>Información General</h2>
+        <p><strong>Edad:</strong> <span id="age"></span> años</p>
+        <p><strong>Servicio:</strong> <span id="service"></span></p>
+        <p><strong>Comentario:</strong> <span id="comment"></span></p>
+    </div>
+
+    <div class="report-content">
+        <h2>Evaluaciones</h2>
+        <p><strong>ID:</strong> <span id="identificacion"></span></p>
+        <p><strong>AS:</strong> <span id="as"></span></p>
+        <p><strong>ES:</strong> <span id="es"></span></p>
+        <p><strong>FP:</strong> <span id="fp"></span></p>
+        <p><strong>GE:</strong> <span id="ge"></span></p>
+        <p><strong>PQ:</strong> <span id="pq"></span></p>
+        <p><strong>QPR:</strong> <span id="qpr"></span></p>
+        <p><strong>RP:</strong> <span id="rp"></span></p>
+        <p><strong>SX:</strong> <span id="sx"></span></p>
+    </div>
+
+    <div class="report-footer">
+        <p id="updatedAt">Actualizado el </p>
+    </div>
+</div>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch("/info")
+            .then(response => response.json())
+            .then(data => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const id = urlParams.get('id');
+                const individualData = data.find(item => item["$id"] === id);
+
+                if (individualData) {
+                    document.getElementById('name').innerText = `Nombre: ${individualData.name}`;
+                    document.getElementById('document').innerText = `Documento: ${individualData.document}`;
+                    document.getElementById('age').innerText = individualData.age;
+                    document.getElementById('service').innerText = individualData.service;
+                    document.getElementById('comment').innerText = individualData.comment || 'N/A';
+                    document.getElementById('as').innerText = individualData.as;
+                    document.getElementById('es').innerText = individualData.es;
+                    document.getElementById('fp').innerText = individualData.fp;
+                    document.getElementById('ge').innerText = individualData.ge;
+                    document.getElementById('pq').innerText = individualData.pq;
+                    document.getElementById('qpr').innerText = individualData.qpr;
+                    document.getElementById('rp').innerText = individualData.rp;
+                    document.getElementById('sx').innerText = individualData.sx;
+                    document.getElementById('updatedAt').innerText = `Actualizado el ${new Date(individualData.updatedAt).toLocaleDateString()}`;
+                }
+            })
+            .catch(error => console.error('Error al obtener los datos:', error));
+    });
+</script>
+
+</body>
+</html>
