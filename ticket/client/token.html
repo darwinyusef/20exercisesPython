@@ -1,17 +1,17 @@
 <script>
-    fetch("http://localhost:8000/auth/token", {
+    fetch("https://ticketproject-dnku.onrender.com/auth/token", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            email: "testuser@example.com",
-            password: "password123"
+            email: "usuario@example.com",
+            password: "pass1234"
         }),
     })
         .then((resp) => resp.json())
         .then((resp) => {
-            console.log(resp);
+           // localStorage.setItem("token", resp.access_token);
         })
         .catch((e) => {
             console.warn("Error", e);

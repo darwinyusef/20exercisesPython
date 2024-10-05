@@ -66,7 +66,7 @@ router = APIRouter(
 # TODO : Revisar un error en el bcrypt porque dice que esta desactualizado y ver otra opción
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# ♥-♣ OAuth2 para rutas protegidas
+# ♥-♣-♦-♠ Ruta OAuth2 para rutas protegidas
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # ♥-♣  Función para verificar la contraseña
